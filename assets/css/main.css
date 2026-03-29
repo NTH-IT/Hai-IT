@@ -3314,3 +3314,34 @@ input, select, textarea {
 			}
 
 	}
+	/* Tạo khung và sắp xếp 2 ảnh nằm cạnh nhau */
+.image-gallery-frame {
+    display: flex;
+    gap: 10px;          /* Khoảng cách giữa 2 ảnh */
+    margin-bottom: 20px;
+    background: #f8f8f8; /* Màu nền nhẹ cho khung */
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+/* Định dạng cho từng ảnh nhỏ (thumbnail) */
+.image-gallery-frame .thumb {
+    flex: 1;            /* Chia đôi khung hình */
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.image-gallery-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Hiệu ứng khi di chuột vào ảnh */
+.image-gallery-frame img:hover {
+    transform: scale(1.05); /* Ảnh hơi to lên một chút */
+    opacity: 0.8;
+}
