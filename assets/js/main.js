@@ -1,159 +1,82 @@
-/*
-	Read Only by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+(function () {
+	'use strict';
 
-(function($) {
+	// Bỏ hiệu ứng preload sau khi trang tải xong.
+	window.addEventListener('load', function () {
+		setTimeout(function () {
+			document.body.classList.remove('is-preload');
+		}, 100);
+	});
 
-	var $window = $(window),
-		$body = $('body'),
-		$header = $('#header'),
-		$titleBar = null,
-		$nav = $('#nav'),
-		$wrapper = $('#wrapper');
+	var navLinks = Array.prototype.slice.call(document.querySelectorAll('#nav a'));
+	var sections = navLinks
+		.map(function (a) {
+			var id = a.getAttribute('href');
+			return id && id.charAt(0) === '#' ? document.querySelector(id) : null;
+		})
+		.filter(Boolean);
 
-	// Breakpoints.
-		breakpoints({
-			xlarge:   [ '1281px',  '1680px' ],
-			large:    [ '1025px',  '1280px' ],
-			medium:   [ '737px',   '1024px' ],
-			small:    [ '481px',   '736px'  ],
-			xsmall:   [ null,      '480px'  ],
+	// Cuộn mượt khi bấm vào menu, có trừ chiều cao header trên mobile.
+	navLinks.forEach(function (a) {
+		a.addEventListener('click', function (e) {
+			var id = a.getAttribute('href');
+			if (id.charAt(0) !== '#') return;
+			var target = document.querySelector(id);
+			if (!target) return;
+			e.preventDefault();
+			target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 		});
+	});
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
+	// Scroll-spy: tô sáng mục nav tương ứng với section đang xem.
+	if ('IntersectionObserver' in window && sections.length) {
+		var observer = new IntersectionObserver(
+			function (entries) {
+				entries.forEach(function (entry) {
+					if (!entry.isIntersecting) return;
+					var id = '#' + entry.target.id;
+					navLinks.forEach(function (a) {
+						a.classList.toggle('active', a.getAttribute('href') === id);
+					});
+				});
+			},
+			{ rootMargin: '-40% 0px -50% 0px', threshold: 0 }
+		);
+		sections.forEach(function (s) { observer.observe(s); });
+	}
+
+	// Lightbox: click vào ảnh để xem kích thước gốc.
+	var overlay = document.createElement('div');
+	overlay.className = 'lightbox-overlay';
+	overlay.innerHTML = '<button type="button" class="lightbox-close" aria-label="Đóng">&times;</button><img alt="" />';
+	document.body.appendChild(overlay);
+	var overlayImg = overlay.querySelector('img');
+
+	function openLightbox(src, alt) {
+		overlayImg.src = src;
+		overlayImg.alt = alt || '';
+		overlay.classList.add('is-visible');
+		document.body.style.overflow = 'hidden';
+	}
+	function closeLightbox() {
+		overlay.classList.remove('is-visible');
+		document.body.style.overflow = '';
+	}
+
+	document.querySelectorAll('a.lightbox').forEach(function (a) {
+		a.addEventListener('click', function (e) {
+			e.preventDefault();
+			var img = a.querySelector('img');
+			if (!img) return;
+			openLightbox(img.getAttribute('src'), img.getAttribute('alt'));
 		});
+	});
 
-	// Tweaks/fixes.
-
-		// Polyfill: Object fit.
-			if (!browser.canUse('object-fit')) {
-
-				$('.image[data-position]').each(function() {
-
-					var $this = $(this),
-						$img = $this.children('img');
-
-					// Apply img as background.
-						$this
-							.css('background-image', 'url("' + $img.attr('src') + '")')
-							.css('background-position', $this.data('position'))
-							.css('background-size', 'cover')
-							.css('background-repeat', 'no-repeat');
-
-					// Hide img.
-						$img
-							.css('opacity', '0');
-
-				});
-
-			}
-
-	// Header Panel.
-
-		// Nav.
-			var $nav_a = $nav.find('a');
-
-			$nav_a
-				.addClass('scrolly')
-				.on('click', function() {
-
-					var $this = $(this);
-
-					// External link? Bail.
-						if ($this.attr('href').charAt(0) != '#')
-							return;
-
-					// Deactivate all links.
-						$nav_a.removeClass('active');
-
-					// Activate link *and* lock it (so Scrollex doesn't try to activate other links as we're scrolling to this one's section).
-						$this
-							.addClass('active')
-							.addClass('active-locked');
-
-				})
-				.each(function() {
-
-					var	$this = $(this),
-						id = $this.attr('href'),
-						$section = $(id);
-
-					// No section for this link? Bail.
-						if ($section.length < 1)
-							return;
-
-					// Scrollex.
-						$section.scrollex({
-							mode: 'middle',
-							top: '5vh',
-							bottom: '5vh',
-							initialize: function() {
-
-								// Deactivate section.
-									$section.addClass('inactive');
-
-							},
-							enter: function() {
-
-								// Activate section.
-									$section.removeClass('inactive');
-
-								// No locked links? Deactivate all links and activate this section's one.
-									if ($nav_a.filter('.active-locked').length == 0) {
-
-										$nav_a.removeClass('active');
-										$this.addClass('active');
-
-									}
-
-								// Otherwise, if this section's link is the one that's locked, unlock it.
-									else if ($this.hasClass('active-locked'))
-										$this.removeClass('active-locked');
-
-							}
-						});
-
-				});
-
-		// Title Bar.
-			$titleBar = $(
-				'<div id="titleBar">' +
-					'<a href="#header" class="toggle"></a>' +
-					'<span class="title">' + $('#logo').html() + '</span>' +
-				'</div>'
-			)
-				.appendTo($body);
-
-		// Panel.
-			$header
-				.panel({
-					delay: 500,
-					hideOnClick: true,
-					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
-					side: 'right',
-					target: $body,
-					visibleClass: 'header-visible'
-				});
-
-	// Scrolly.
-		$('.scrolly').scrolly({
-			speed: 1000,
-			offset: function() {
-
-				if (breakpoints.active('<=medium'))
-					return $titleBar.height();
-
-				return 0;
-
-			}
-		});
-
-})(jQuery);
+	overlay.addEventListener('click', function (e) {
+		if (e.target === overlay) closeLightbox();
+	});
+	overlay.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+	document.addEventListener('keydown', function (e) {
+		if (e.key === 'Escape') closeLightbox();
+	});
+})();
