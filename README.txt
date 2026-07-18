@@ -1,34 +1,36 @@
-Read Only by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+GIỚI THIỆU DỰ ÁN
+----------------
+Đây là mã nguồn website portfolio cá nhân, được phát triển nhằm mục đích giới thiệu 
+hồ sơ năng lực, kinh nghiệm làm việc chuyên môn và các dự án công nghệ tiêu biểu. 
+Mã nguồn đã được tùy biến, chỉnh sửa và tối ưu hóa sâu bởi tác giả với sự hỗ trợ 
+của Trí tuệ Nhân tạo (A.I.), chuyển đổi từ một template mẫu thành một sản phẩm 
+hoàn chỉnh mang tính cá nhân hóa cao.
 
+NỘI DUNG & TÍNH NĂNG CHÍNH
+--------------------------
+- Trang đơn (Single-page) tối ưu trải nghiệm người dùng, hiển thị mượt mà trên mọi thiết bị.
+- Biểu mẫu liên hệ (Contact Form) tích hợp trực tuyến tiện lợi.
 
-Just a super simple single-page responsive template built for personal sites and portfolios
-(although it'd definitely work for other stuff too). Includes a contact form, pre-styled
-elements, and Sass sources.
+CÔNG NGHỆ SỬ DỤNG
+-----------------
+- Giao diện & Layout: HTML5, CSS3, Sass (Shed/Sources), Responsive Design.
+- Thư viện hỗ trợ: jQuery, Scrollex (hiệu ứng cuộn trang), Responsive Tools.
+- Hỗ trợ phát triển: Biên soạn, tinh chỉnh và sửa lỗi mã nguồn bằng A.I.
 
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
+THÔNG TIN BẢN QUYỀN & GHI CÔNG (CREDITS)
+----------------------------------------
+Toàn bộ nội dung, hình ảnh cá nhân và phần mã nguồn được viết thêm/chỉnh sửa thuộc 
+quyền sở hữu và sử dụng của tác giả. 
 
-(* = Not included)
+Để tôn trọng và tuân thủ giấy phép Creative Commons Attribution 3.0 (CCA 3.0) của 
+giao diện gốc dùng làm nền tảng phát triển, các thông tin ghi công được giữ lại như sau:
 
-Feedback, bug reports, and comments are not only welcome, but strongly encouraged :)
+- Giao diện nền tảng (Base Design): Read Only của HTML5 UP (html5up.net)
+- Biểu tượng (Icons): Font Awesome (fontawesome.io)
+- Thư viện mã nguồn mở:
+  * jQuery (jquery.com)
+  * Scrollex (github.com/ajlkn/jquery.scrollex)
+  * Responsive Tools (github.com/ajlkn/responsive-tools)
 
-AJ
-aj@lkn.io | @ajlkn
-
-PS: Not sure how to get that contact form working? Give formspree.io a try (it's awesome).
-
-
-Credits:
-
-	Demo Images:
-		Unsplash (unsplash.com)
-
-	Icons:
-		Font Awesome (fontawesome.io)
-
-	Other:
-		jQuery (jquery.com)
-		Scrollex (github.com/ajlkn/jquery.scrollex)
-		Responsive Tools (github.com/ajlkn/responsive-tools)
+---
+Được hoàn thiện bởi Tác giả với sự đồng hành của A.I.
