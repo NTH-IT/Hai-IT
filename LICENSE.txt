@@ -1,3 +1,16 @@
+========================================================================
+PROJECT LICENSE & COPYRIGHT NOTICE
+========================================================================
+This project consists of personal modifications, custom features, and AI-assisted 
+code optimizations built upon the original "Read Only" template by HTML5 UP.
+
+- The original design and baseline source code remain under the license below.
+- All custom modifications, personalized features, and project-specific code 
+  developed by the Author (with AI collaboration) are licensed for personal/portfolio use.
+
+------------------------------------------------------------------------
+ORIGINAL LICENSE TEXT (CREATIVE COMMONS ATTRIBUTION 3.0 UNPORTED)
+------------------------------------------------------------------------
 Creative Commons Attribution 3.0 Unported
 http://creativecommons.org/licenses/by/3.0/
 
