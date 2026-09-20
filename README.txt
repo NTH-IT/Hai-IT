@@ -33,4 +33,4 @@ giao diện gốc dùng làm nền tảng phát triển, các thông tin ghi cô
   * Responsive Tools (github.com/ajlkn/responsive-tools)
 
 ---
-Được hoàn thiện bởi Tác giả với sự đồng hành của A.I.
+Được hoàn thiện bởi Tác giả với sự trợ giúp của AI (Trí thông minh nhân tạo).
