@@ -79,4 +79,37 @@
 	document.addEventListener('keydown', function (e) {
 		if (e.key === 'Escape') closeLightbox();
 	});
+
+	// Nhạc nền: nút play/pause, âm lượng cố định 45%.
+	var audio = document.getElementById('bg-audio');
+	var musicBtn = document.getElementById('music-toggle');
+	if (audio && musicBtn) {
+		audio.volume = 0.45;
+		var icon = musicBtn.querySelector('i');
+
+		musicBtn.addEventListener('click', function () {
+			if (audio.paused) {
+				audio.play().catch(function () {
+					// Trình duyệt chặn tự phát; bỏ qua, người dùng có thể bấm lại.
+				});
+			} else {
+				audio.pause();
+			}
+		});
+
+		audio.addEventListener('play', function () {
+			musicBtn.classList.add('is-playing');
+			musicBtn.setAttribute('aria-pressed', 'true');
+			musicBtn.setAttribute('aria-label', 'Tạm dừng nhạc nền');
+			icon.classList.remove('fa-play');
+			icon.classList.add('fa-pause');
+		});
+		audio.addEventListener('pause', function () {
+			musicBtn.classList.remove('is-playing');
+			musicBtn.setAttribute('aria-pressed', 'false');
+			musicBtn.setAttribute('aria-label', 'Phát nhạc nền');
+			icon.classList.remove('fa-pause');
+			icon.classList.add('fa-play');
+		});
+	}
 })();
